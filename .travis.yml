@@ -2,3 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: v1HanJEEhyOaNM6xMEgx2UdCJhloCAst7BfaU+juwYV3L3sfjSVtmboGvCEAzG1EUHwNwMm9Iz4teHhtLyclrRmzqFCvb2XbSL/zppbb3w4FvxUZTWumCXVP+nhCW/e8LVu1o/8BErVhgcKsD77TN8Fuqy8/3Wh3gWOLZUDBuNCY7MHY2O+1wE5+CjCGAoUeMXqk58Jsne+cjIuIiDjPgLli89C3Jtpctej382EwjEiEG8Boy/cSx3oQQNlZm5hGAPdDnPJHXhgDqmNrow4Vs9e0OQz52x28VSJBneqxZ2K0XblccohhzHZyvjl+BqCpaXFr38pCki1hp++R0+hHy6fct0xxMrj5qV62wpnyJW3XE2pfF/IOC3z157DTP5ZfU08gVSRHP+rTo54VegSwEoCrT6W9EVBUhTklsdjmd2iKinIlfJesirCAbT/m2+vdaNQQvQXWZAHZTHVEcoIfcwL5yIlDVTkSwGtR7pvf3qrEhnNxi34Cgya/Z0GposgdPCcjxaaQY07j8ffrInMj5/xDRBUOjsZyt6yNZKVyRDePTZbVJKtD28KL4ZxqnQ1VYCKQt6O00j6R+WXjEqujLmQIoolEzNdnMKKBtPPS4ZJJv5jDCx2F1gQZ6PWP4pIQOlKWrFYV7NYwQ6Uvcv5sueojOxzcz/gWKCsNz1YGzII=
+  app: nameless-earth-17401
+  on:
+    repo: daxapps/blog-app-mongoose-challenge-solution
