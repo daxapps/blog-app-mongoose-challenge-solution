@@ -115,7 +115,6 @@ describe('BlogPosts API resource', function() {
 	describe('POST endpoint', function() {
 		it('should add a new post', function() {
 			const newPost = generateBlogPostData();
-			// let mostRecentGrade;
 
 			return chai.request(app)
 				.post('/posts')
@@ -138,6 +137,45 @@ describe('BlogPosts API resource', function() {
 					post.author.firstName.should.equal(newPost.author.firstName);
           post.author.lastName.should.equal(newPost.author.lastName);
 					post.content.should.equal(newPost.content);
+				});
+		});
+	});
+
+	describe('PUT endpoint', function() {
+		it('should update fields you send over', function() {
+			const updateData = {
+				title: 'What I learned yesterday',
+				content: 'adsfa rteh fgdhg vsfg hhyjt ijohh',
+				author: {
+					firstName: 'John',
+					lastName: 'Doe'
+				}
+			};
+
+			return BlogPost
+				.findOne()
+				.exec()
+				.then(function(post) {
+					updateData.id =  post.id;
+					return chai.request(app)
+						.put(`/posts/${post.id}`)
+						.send(updateData);
+				})
+				.then(function(res) {
+					res.should.have.status(201);
+					res.should.be.json;
+          res.body.should.be.a('object');
+          res.body.title.should.equal(updateData.title);
+          res.body.author.should.equal(
+            `${updateData.author.firstName} ${updateData.author.lastName}`);
+          res.body.content.should.equal(updateData.content);
+					return BlogPost.findById(res.body.id).exec();
+				})
+				.then(function(post) {
+					post.title.should.equal(updateData.title);
+					post.content.should.equal(updateData.content);
+					post.author.firstName.should.equal(updateData.author.firstName);
+          post.author.lastName.should.equal(updateData.author.lastName);
 				});
 		});
 	});
